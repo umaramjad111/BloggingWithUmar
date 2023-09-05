@@ -43,7 +43,7 @@ const Home = ({ setActive, user, active }) => {
           unsub();
         //   getTrendingBlogs();
         };
-      }, []);
+      }, [setActive, active]);
 
       if(loading){
         return <Spinner/>
