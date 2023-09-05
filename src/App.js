@@ -48,7 +48,7 @@ function App() {
         />
         <Route
           path="/search"
-          element={<Home setActive={setActive} user={user} />}
+          element={<Home setActive={setActive} user={user} active={active} />}
         />
         <Route
           path="/detail/:id"
