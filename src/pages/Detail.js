@@ -10,18 +10,34 @@ import {
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
+import Tags from "../components/Tags";
+import MostPopular from "../components/MostPopular";
 
 const Detail = ({setActive , user}) => {
     const { id } = useParams();
     // const [loading, setLoading] = useState(false);
     const [blog, setBlog] = useState(null);
-    // const [blogs, setBlogs] = useState([]);
-    // const [tags, setTags] = useState([]);
+    const [blogs, setBlogs] = useState([]);
+    const [tags, setTags] = useState([]);
     // const [comments, setComments] = useState([]);
     // let [likes, setLikes] = useState([]);
     // const [userComment, setUserComment] = useState("");
     // const [relatedBlogs, setRelatedBlogs] = useState([]);
 
+
+    useEffect(() => {
+      const getBlogsData = async () => {
+        const blogRef = collection(db , "blogs");
+        const blogs = await getDocs(blogRef);
+        setBlogs(blogs.docs.map((doc) => ({id: doc.id , ...doc.data()})));  
+        let tags = [];
+        blogs.docs.map((doc) => tags.push(...doc.get("tags")));
+        let uniqueTags = [...new Set(tags)];
+        setTags(uniqueTags)
+      }
+      getBlogsData();
+    }, [])
+    
     useEffect(() => {
         id && getBlogDetail();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,8 +91,8 @@ const Detail = ({setActive , user}) => {
                         <p className="text-start">{blog?.description}</p>
                     </div>
                     <div className="col-md-3">
-                        <h2>Tags</h2>
-                        <h2>Most Popular</h2>
+                        <Tags tags={tags}/>
+                        <MostPopular blogs={blogs}/>
                     </div>
                 </div>
             </div>

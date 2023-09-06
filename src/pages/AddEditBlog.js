@@ -154,7 +154,7 @@ const AddEditBlog = ({ user, setActive }) => {
         <div className="container">
             <div className="col-12">
              <div className="text-center heading py-2">
-                Create Blog
+               {id ? "Update Blog" : "Create Blog"}
              </div>
             </div>
             <div className="row h-100 justify-content-center align-items-center">

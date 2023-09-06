@@ -41,6 +41,8 @@ function App() {
     <div className="App">
       <ToastContainer/>
       <Header setActive={setActive} active={active} user={user} handleLogout={handleLogout}/>
+    
+     
        <Routes>
         <Route
           path="/"
