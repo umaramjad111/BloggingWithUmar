@@ -57,6 +57,16 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                     About
                   </li>
                 </Link>
+                <Link to="/privacy" style={{ textDecoration: "none" }}>
+                  <li
+                    className={`nav-item nav-link ${
+                      active === "privacy" ? "active" : ""
+                    }`}
+                    onClick={() => setActive("privacy")}
+                  >
+                    Privacy Policy
+                  </li>
+                </Link>
               </ul>
               <div className="row g-3">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">

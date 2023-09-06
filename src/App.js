@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from './components/Header';
 import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   const [active, setActive] = useState("home");
@@ -75,6 +76,7 @@ function App() {
           }
         />
         <Route path="/about" element={<About />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route
           path="/auth"
           element={<Authentication setActive={setActive} setUser={setUser} />}
